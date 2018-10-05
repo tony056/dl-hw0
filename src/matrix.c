@@ -30,7 +30,7 @@ matrix random_matrix(int rows, int cols, float s)
     int i, j;
     for(i = 0; i < rows; ++i){
         for(j = 0; j < cols; ++j){
-            m.data[i*cols + j] = 2*s*(rand()%1000/1000.0) - s;    
+            m.data[i*cols + j] = 2*s*(rand()%1000/1000.0) - s;
         }
     }
     return m;
@@ -50,11 +50,16 @@ void free_matrix(matrix m)
 // returns: matrix that is a deep copy of m
 matrix copy_matrix(matrix m)
 {
-    matrix c = make_matrix(m.rows, m.cols);
+    matrix cm = make_matrix(m.rows, m.cols);
     // TODO: 1.1 - Fill in the new matrix
+    for (int r = 0; r < cm.rows; r++) {
+      for (int c = 0; c < cm.cols; c++) {
+        int index = r * cm.cols + c;
+        cm.data[index] = m.data[index]; 
+      }
+    }
 
-
-    return c;
+    return cm;
 }
 
 // Transpose a matrix
