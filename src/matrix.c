@@ -88,6 +88,13 @@ void axpy_matrix(float a, matrix x, matrix y)
     assert(x.cols == y.cols);
     assert(x.rows == y.rows);
     // TODO: 1.3 - Perform the weighted sum, store result back in y
+    int r, c = x.rows, x.cols;
+    for (int i = 0; i < r; i++) {
+      for (int j = 0; j < c; j++) {
+        int index = i * c + j;
+        y.data[index] += (a * x.data[index]);
+      }
+    }
 }
 
 // Perform matrix multiplication a*b, return result
