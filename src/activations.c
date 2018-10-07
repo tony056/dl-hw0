@@ -59,8 +59,26 @@ void gradient_matrix(matrix m, ACTIVATION a, matrix d)
     int i, j;
     for(i = 0; i < m.rows; ++i){
         for(j = 0; j < m.cols; ++j){
-            double x = m.data[i*m.cols + j];
-            // TODO: multiply the correct element of d by the gradient
+            int index = i * m.cols + j;
+            double x = m.data[index];
+            switch (a) {
+              case LOGISTIC:
+                d.data[index] *= (logistic_func(x) * (1 - logistic_func(x)));
+                break;
+              case RELU:
+                d.data[index] *= (x > 0 ? 1 : 0);
+                break;
+              case LRELU:
+                d.data[index] *= (x > 0 ? 1 : 0.1);
+                break;
+              case SOFTMAX:
+              case LINEAR:
+                // graident is 1
+                break;
+              default:
+                printf("%s\n", "The unrecognized activation function.");
+                break;
+            }
         }
     }
 }
