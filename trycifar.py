@@ -10,8 +10,8 @@ def neural_net():
     return make_net(l)
 
 print("loading data...")
-train = load_image_classification_data("cifar/cifar.train", "cifar/cifar.labels")
-test  = load_image_classification_data("cifar/cifar.test", "cifar/cifar.labels")
+train = load_image_classification_data("cifar/cifar.train".encode('utf-8'), "cifar/cifar.labels".encode('utf-8'))
+test  = load_image_classification_data("cifar/cifar.test".encode('utf-8'), "cifar/cifar.labels".encode('utf-8'))
 print("done")
 print
 
@@ -31,4 +31,3 @@ print
 print("evaluating model...")
 print("training accuracy: %f", accuracy_net(m, train))
 print("test accuracy:     %f", accuracy_net(m, test))
-

@@ -10,8 +10,8 @@ def neural_net():
     return make_net(l)
 
 print("loading data...")
-train = load_image_classification_data("mnist/mnist.train", "mnist/mnist.labels")
-test  = load_image_classification_data("mnist/mnist.test", "mnist/mnist.labels")
+train = load_image_classification_data("mnist/mnist.train".encode('utf-8'), "mnist/mnist.labels".encode('utf-8'))
+test  = load_image_classification_data("mnist/mnist.test".encode('utf-8'), "mnist/mnist.labels".encode('utf-8'))
 print("done")
 print
 
@@ -20,7 +20,7 @@ batch = 128
 iters = 5000
 rate = .01
 momentum = .9
-decay = .0
+decay = .01
 
 m = softmax_model()
 print("training...")
@@ -31,4 +31,3 @@ print
 print("evaluating model...")
 print("training accuracy: %f", accuracy_net(m, train))
 print("test accuracy:     %f", accuracy_net(m, test))
-

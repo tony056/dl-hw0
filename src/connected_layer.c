@@ -76,7 +76,7 @@ void backward_connected_layer(layer l, matrix prev_delta)
         // Finally, if there is a previous layer to calculate for,
         // calculate dL/d(in). Again, using axpy, add this into the current
         // value we have for the previous layers delta, prev_delta.
-        axpy_matrix(1, matmul(delta, transpose_matrix(l.w)), prev_delta);
+        axpy_matrix(1, matmul(transpose_matrix(l.w), delta), prev_delta);
     }
 }
 
@@ -86,7 +86,8 @@ void update_connected_layer(layer l, float rate, float momentum, float decay)
     // TODO
     axpy_matrix(-decay, l.w, l.dw);
     axpy_matrix(rate, l.dw, l.w);
-    axpy_matrix(momentum, l.dw, l.dw);
+    // axpy_matrix(momentum, l.dw, l.dw);
+    scal_matrix(momentum, l.dw);
 }
 
 layer make_connected_layer(int inputs, int outputs, ACTIVATION activation)
