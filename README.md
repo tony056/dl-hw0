@@ -34,7 +34,7 @@ Fill in the code to perform the weighted sum. The operation you are performing i
 
 ### 1.4 `matmul` ###
 
-Implement matrix multiplication. No need to do anything crazy, 3 `for` loops oughta do it. However, good cache utilization will make your operation much faster! Once you've got something you can run: `./uwnet test`. This doesn't actually check if your code is correct but it will time a bunch of matrix multiplications for you. Try optimizing your loop ordering to get the fastest time. On this test for my code it takes about 4 seconds but your processing speed may vary!
+Implement matrix multiplication. No need to do anything crazy, 3 `for` loops oughta do it. However, good cache utilization will make your operation much faster! Once you've written something you can run: `./uwnet test`. This doesn't actually check if your code is correct but it will time a bunch of matrix multiplications for you. Try optimizing your loop ordering to get the fastest time. You don't need to change anything except the loop order, there's just one ordering that's MUCH faster. On this test for my code it takes about 4 seconds but your processing speed may vary!
 
 ## 2. Activation functions ##
 
@@ -175,6 +175,24 @@ Then try training a model on MNIST!
 
     python trymnist.py
 
+Every batch the model will print out the loss and at the end of training your model will run on the training and testing data and give you final accuracy results. Try playing around with different model structures and hyperparameter values. Can you get >97% accuracy?
+
+### 4.3 Train on CIFAR ###
+
+The CIFAR-10 dataset is similar in size to MNIST but much more challenging - https://www.cs.toronto.edu/~kriz/cifar.html. Instead of classifying digits, you will train a classifier to recognize these objects:
+
+![cifar10](figs/cifar.png)
+
+First get the dataset:
+
+    wget https://pjreddie.com/media/files/cifar.tar.gz
+    tar xvzf cifar.tar.gz
+
+Then try training on CIFAR:
+
+    python trycifar.py
+
+How do your results compare to MNIST? If you changed your model for MNIST, do similar changes affect your CIFAR results in the same way?
 
 ## 5. Running on the GPU with PyTorch ##
 
@@ -187,5 +205,11 @@ Complete the notebook to train a PyTorch model on the MNIST dataset.
 
 ## Turn it in ##
 
-Use the dropbox link on the class website.
+First run the `collate.sh` script by running:
+
+    bash collate.sh
+    
+This will create the file `submit.tar.gz` in your directory with all the code you need to submit. The command will check to see that your files have changed relative to the version stored in the `git` repository. If it hasn't changed, figure out why, maybe you need to download your ipynb from google?
+
+Submit `submit.tar.gz` in the file upload field for Homework 0 on Canvas.
 
